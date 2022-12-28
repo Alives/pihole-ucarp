@@ -1,0 +1,17 @@
+[Unit]
+Description=PiHole uCARP Service
+# When systemd stops or restarts the pihole.service, the action is propagated to this unit
+PartOf=pihole.service
+# Start this unit after the pihole.service start
+After=pihole.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/ucarp --interface=eth0 --pass=carp1password --srcip=10.0.0.2 --vhid=1 --addr=10.0.0.3 --shutdown --preempt --advskew=0 --upscript=/opt/repos/pihole-ucarp/vip-up --downscript=/opt/repos/pihole-ucarp/vip-down
+# Restart the service on non-zero exit code when terminated by a signal other than SIGHUP, SIGINT, SIGTERM or SIGPIPE
+Restart=on-failure
+
+
+[Install]
+# This unit should start when pihole.service is starting
+WantedBy=pihole.service

@@ -1,0 +1,14 @@
+[Unit]
+Description=PiHole Docker Service
+PartOf=pihole.service
+After=pihole.service
+# This unit should start after the pihole-ucarp service is started
+After=pihole-ucarp.service
+
+[Service]
+ExecStart=/opt/repos/pihole-ucarp/pihole-docker.sh
+ExecStopPost=/usr/bin/docker rm -f pihole
+Restart=on-failure
+
+[Install]
+WantedBy=pihole.service
