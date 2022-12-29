@@ -8,7 +8,8 @@ done
 echo 'CARP interface is up.'
 
 echo 'Starting PiHole docker in the background...'
-/usr/bin/docker-compose -f /root/docker/docker-compose.yml up -d pihole
+/usr/bin/docker-compose \
+  -f /opt/repos/pihole-ucarp/docker-compose.yml up -d pihole
 echo 'Waiting for PiHole DNS to start up ...'
 while true; do
   if out="$(dig +short +norecurse +retry=0 +timeout=1 @10.0.0.3 pi.hole)"; then
