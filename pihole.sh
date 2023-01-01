@@ -20,7 +20,8 @@ while true; do
   echo 'Still waiting for PiHole DNS to start up ...'
   sleep 1
 done
-echo 'PiHole started.'
+echo 'PiHole started, notifying systemd...'
+/usr/bin/systemd-notify --ready
 
 echo 'Entering PiHole monitoring mode...'
 while true; do
