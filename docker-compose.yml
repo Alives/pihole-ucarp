@@ -9,6 +9,8 @@ services:
           cpus: 2
           memory: 1G
     dns: [10.0.0.1]
+    environment:
+      VIRTUAL_HOST: "pihole.eyyit.com"
     hostname: pihole
     image: pihole/pihole:latest
     network_mode: bridge
