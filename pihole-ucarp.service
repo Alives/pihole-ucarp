@@ -3,6 +3,9 @@ Description=PiHole uCARP Service
 # When systemd stops or restarts the pihole.service, the action is propagated to this unit
 PartOf=pihole.service
 Before=pihole.service
+# Only start once the network is ready.
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=exec
