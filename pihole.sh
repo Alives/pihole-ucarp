@@ -30,6 +30,7 @@ while true; do
       echo 'No output, VIP moved to router probably.'
       exit 1
     fi
+    sleep 0.5
     continue
   else
     echo "${out}" | grep -v '^$'
